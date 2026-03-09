@@ -107,17 +107,26 @@ box-shadow:0 5px 15px rgba(0,0,0,0.3);
 margin:0;
 }
 
-/* hiệu ứng tim */
+/* hiệu ứng tim tối ưu */
 
 .heart{
-position:absolute;
+position:fixed;
+top:-20px;
 color:white;
-animation:fall 6s linear infinite;
+pointer-events:none;
+animation:fall linear forwards;
+will-change: transform, opacity;
 }
 
 @keyframes fall{
-0%{transform:translateY(-10vh)}
-100%{transform:translateY(110vh)}
+0%{
+transform:translateY(-10vh);
+opacity:1;
+}
+100%{
+transform:translateY(110vh);
+opacity:0;
+}
 }
 
 /* 📱 điện thoại */
@@ -311,20 +320,24 @@ alert("Sai mật khẩu rồi ❤️")
 }
 
 function createHeart(){
+
 let heart=document.createElement("div")
-heart.classList.add("heart")
+heart.className="heart"
 heart.innerHTML="❤"
+
 heart.style.left=Math.random()*100+"vw"
-heart.style.fontSize=(Math.random()*20+10)+"px"
-heart.style.animationDuration=(Math.random()*3+3)+"s"
+heart.style.fontSize=(Math.random()*18+12)+"px"
+heart.style.animationDuration=(Math.random()*4+5)+"s"
+
 document.body.appendChild(heart)
 
 setTimeout(()=>{
 heart.remove()
-},6000)
+},7000)
+
 }
 
-setInterval(createHeart,300)
+setInterval(createHeart,800)
 
 </script>
 
